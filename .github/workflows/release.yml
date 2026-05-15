@@ -229,6 +229,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           allowUpdates: true
           replacesArtifacts: true
+          makeLatest: true
           prerelease: false
           artifacts: "${{ matrix.sdk }}-${{ matrix.arch }}.tar.gz"
           body: ${{ steps.release_notes.outputs.notes }}
