@@ -90,11 +90,9 @@ jobs:
     name: Build ${{ matrix.arch }}-${{ matrix.sdk }}
     needs: [get-version, scan-packages]
     runs-on: ubuntu-latest
-    continue-on-error: true
     strategy:
       fail-fast: false
       matrix:
-        pkg: ${{ fromJson(needs.scan-packages.outputs.packages).*.name }}
         arch:
           - aarch64_cortex-a53
           - aarch64_cortex-a72
@@ -122,6 +120,7 @@ jobs:
           FEEDNAME: packages_ci
           PACKAGES: luci-app-ddns-go
           NO_REFRESH_CHECK: true
+          V: sc
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
